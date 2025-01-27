@@ -3,8 +3,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Roboto", "sans-serif"],
-        heading: ["Playfair Display", "serif"],
+        sans: ["Inter", "sans-serif"],
+        heading: ["Playfair Display", "Montserrat", "serif"],
       },
     },
   },

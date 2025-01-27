@@ -1,10 +1,8 @@
-import React from "react";
-
+import TranslatorApp from "./TranslatorApp";
 function App() {
   return (
-    <div>
-      <h1 className="font-heading text-4xl pb-20"> Heading</h1>
-      <p className="text-lg">paragraf</p>
+    <div className="w-full h-screen bg-gray-400 flex justify-center items-center p-20">
+      <TranslatorApp />
     </div>
   );
 }
