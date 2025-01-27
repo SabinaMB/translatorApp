@@ -6,6 +6,7 @@ module.exports = {
         sans: ["Inter", "sans-serif"],
         heading: ["Playfair Display", "Montserrat", "serif"],
       },
+      translate: ["active"],
     },
   },
   plugins: [],
