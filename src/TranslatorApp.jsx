@@ -24,7 +24,18 @@ const TranslatorApp = () => {
           English
         </div>
         {showLanguages && (
-          <div className="w-[calc(100%-4rem)] h-[calc(100%-9rem)] bg-gray-300/20 absolute top-32 left-8 z-10 rounded p-4"></div>
+          <div className="list w-full h-[calc(100%-9rem)] bg-gray-400 absolute top-32 z-10 rounded p-4 overflow-y-scroll scrollbar-hide ">
+            <ul>
+              {Object.entries(languages).map(([code, name]) => (
+                <li
+                  className="cursor-pointer hover:bg-amber-400 transition duration-200 p-2 rounded"
+                  key={code}
+                >
+                  {name}
+                </li>
+              ))}
+            </ul>
+          </div>
         )}
       </div>
       <div className="w-full relative">
