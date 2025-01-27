@@ -13,15 +13,32 @@ const TranslatorApp = () => {
     setShowLanguages(true);
   };
 
+  const handleLanguageSelect = (languageCode) => {
+    if (currentLanguageSelection === "from") {
+      setSelectedLanguageFrom(languageCode);
+    } else {
+      setSelectedLanguageTo(languageCode);
+    }
+    setShowLanguages(false);
+  };
+
+  const handleSwapLanguages = () => {
+    setSelectedLanguageFrom(selectedLanguageTo);
+    setSelectedLanguageTo(selectedLanguageFrom);
+  };
+
   return (
     <div className="flex flex-col gap-y-4 justify-center items-center pt-12 pb-6 relative">
       <div className="min-h-20 w-full flex justify-center items-center px-8 bg-amber-400 text-gray-900 rounded-lg">
         <div className="language" onClick={() => handleLanguageClick("from")}>
-          English
+          {languages[selectedLanguageFrom] || "English"}
         </div>
-        <i className="fa-solid fa-arrows-rotate text-2xl mx-8 cursor-pointer"></i>
+        <i
+          className="fa-solid fa-arrows-rotate text-2xl mx-8 cursor-pointer"
+          onClick={handleSwapLanguages}
+        ></i>
         <div className="language" onClick={() => handleLanguageClick("to")}>
-          English
+          {languages[selectedLanguageTo] || "English"}
         </div>
         {showLanguages && (
           <div className="list w-full h-[calc(100%-9rem)] bg-gray-400 absolute top-32 z-10 rounded p-4 overflow-y-scroll scrollbar-hide ">
@@ -30,6 +47,7 @@ const TranslatorApp = () => {
                 <li
                   className="cursor-pointer hover:bg-amber-400 transition duration-200 p-2 rounded"
                   key={code}
+                  onClick={() => handleLanguageSelect(code)}
                 >
                   {name}
                 </li>

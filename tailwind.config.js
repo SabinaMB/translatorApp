@@ -9,5 +9,24 @@ export default {
       translate: ["active"],
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      const newUtilities = {
+        ".scrollbar-hide": {
+          "-ms-overflow-style": "none", // IE/Edge
+          "scrollbar-width": "none", // Firefox
+        },
+      };
+
+      addUtilities(newUtilities);
+
+      const pseudoElements = {
+        ".scrollbar-hide::-webkit-scrollbar": {
+          display: "none", // Chrome, Safari, and Opera
+        },
+      };
+
+      addUtilities(pseudoElements, ["responsive"]);
+    },
+  ],
 };
