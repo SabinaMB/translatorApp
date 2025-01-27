@@ -1,13 +1,31 @@
+import { languages } from "./languagesData";
+import { useState } from "react";
+
 const TranslatorApp = () => {
+  const [selectedLanguageFrom, setSelectedLanguageFrom] = useState("en");
+  const [selectedLanguageTo, setSelectedLanguageTo] = useState("en");
+  const [showLanguages, setShowLanguages] = useState(false);
+  const [currentLanguageSelection, setCurrentLanguageSelection] =
+    useState(null);
+
+  const handleLanguageClick = (type) => {
+    setCurrentLanguageSelection(type);
+    setShowLanguages(true);
+  };
+
   return (
     <div className="flex flex-col gap-y-4 justify-center items-center pt-12 pb-6 relative">
-      <button className="absolute top-4 right-4">
-        <i className="fa-solid fa-xmark text-xl text-gray-700 cursor-pointer"></i>
-      </button>
       <div className="min-h-20 w-full flex justify-center items-center px-8 bg-amber-400 text-gray-900 rounded-lg">
-        <div className="language">English</div>
+        <div className="language" onClick={() => handleLanguageClick("from")}>
+          English
+        </div>
         <i className="fa-solid fa-arrows-rotate text-2xl mx-8 cursor-pointer"></i>
-        <div className="language">English</div>
+        <div className="language" onClick={() => handleLanguageClick("to")}>
+          English
+        </div>
+        {showLanguages && (
+          <div className="w-[calc(100%-4rem)] h-[calc(100%-9rem)] bg-gray-300/20 absolute top-32 left-8 z-10 rounded p-4"></div>
+        )}
       </div>
       <div className="w-full relative">
         <textarea className="textarea"></textarea>
