@@ -12,7 +12,7 @@ const TranslatorApp = () => {
   const [charCount, setCharCount] = useState(0);
   const maxChars = 200;
   const dropdownRef = useRef(null);
-  const [filteredLanguages, setFilteredLanguages] = useState(null); // Start with null for full list
+  const [filteredLanguages, setFilteredLanguages] = useState(null);
 
   const handleClickOutside = (e) => {
     if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
@@ -92,13 +92,13 @@ const TranslatorApp = () => {
   };
 
   return (
-    <div className="min-w-[90%] sm:min-w-xl flex flex-col gap-y-4 justify-center items-center pt-12 pb-6 relative">
+    <div className="min-w-[90%] sm:min-w-xl flex flex-col gap-y-4 justify-center items-center pt-10 pb-6 relative">
       <div className="min-h-20 w-full flex justify-center items-center px-8 bg-amber-400 text-gray-900 rounded-lg">
         <div className="language" onClick={() => handleLanguageClick("from")}>
           {languages[selectedLanguageFrom] || "English"}
         </div>
         <i
-          className="fa-solid fa-arrows-rotate text-2xl mx-8 cursor-pointer"
+          className="fa-solid fa-arrows-rotate text-2xl mx-4 sm:mx-8 cursor-pointer"
           onClick={handleSwapLanguages}
         ></i>
         <div className="language" onClick={() => handleLanguageClick("to")}>
@@ -114,7 +114,7 @@ const TranslatorApp = () => {
                 <button
                   key={letter}
                   onClick={() => handleLetterClick(letter)}
-                  className="text-gray-900 hover:text-amber-400"
+                  className="text-gray-900 hover:text-amber-400 cursor-pointer"
                 >
                   {letter}
                 </button>
