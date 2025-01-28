@@ -109,7 +109,7 @@ const TranslatorApp = () => {
             className="list w-full h-[calc(100%-9rem)] bg-gray-400 absolute top-32 z-10 rounded p-4 overflow-y-scroll scrollbar-hide"
             ref={dropdownRef}
           >
-            <div className="alphabet-list flex gap-2 mb-2">
+            <div className="alphabet-list flex gap-2 mb-2 text-lg">
               {"ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map((letter) => (
                 <button
                   key={letter}
@@ -124,7 +124,7 @@ const TranslatorApp = () => {
               {(filteredLanguages || Object.entries(languages)).map(
                 ([code, name]) => (
                   <li
-                    className="cursor-pointer hover:bg-amber-400 transition duration-200 p-2 rounded"
+                    className="cursor-pointer hover:bg-amber-400 transition duration-200 p-2 rounded text-lg"
                     key={code}
                     onClick={() => handleLanguageSelect(code)}
                   >
@@ -136,7 +136,7 @@ const TranslatorApp = () => {
             {filteredLanguages && (
               <button
                 onClick={handleResetFilter}
-                className="mt-2 text-amber-400 hover:text-amber-600"
+                className="mt-2 text-amber-400 cursor-pointer"
               >
                 Show All
               </button>
