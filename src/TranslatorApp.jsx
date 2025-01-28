@@ -7,12 +7,12 @@ const TranslatorApp = () => {
   const [showLanguages, setShowLanguages] = useState(false);
   const [currentLanguageSelection, setCurrentLanguageSelection] =
     useState(null);
-
   const [inputText, setInputText] = useState("");
   const [translatedText, setTranslatedText] = useState("");
   const [charCount, setCharCount] = useState(0);
   const maxChars = 200;
   const dropdownRef = useRef(null);
+  const [filteredLanguages, setFilteredLanguages] = useState(null); // Start with null for full list
 
   const handleClickOutside = (e) => {
     if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
@@ -79,6 +79,18 @@ const TranslatorApp = () => {
       handleTranslate();
     }
   };
+
+  const handleLetterClick = (letter) => {
+    const filtered = Object.entries(languages).filter(([code, name]) =>
+      name.toLowerCase().startsWith(letter.toLowerCase())
+    );
+    setFilteredLanguages(filtered); // Set filtered languages based on letter
+  };
+
+  const handleResetFilter = () => {
+    setFilteredLanguages(null); // Reset filter to show full list
+  };
+
   return (
     <div className="min-w-[90%] sm:min-w-xl flex flex-col gap-y-4 justify-center items-center pt-12 pb-6 relative">
       <div className="min-h-20 w-full flex justify-center items-center px-8 bg-amber-400 text-gray-900 rounded-lg">
@@ -97,17 +109,38 @@ const TranslatorApp = () => {
             className="list w-full h-[calc(100%-9rem)] bg-gray-400 absolute top-32 z-10 rounded p-4 overflow-y-scroll scrollbar-hide"
             ref={dropdownRef}
           >
-            <ul>
-              {Object.entries(languages).map(([code, name]) => (
-                <li
-                  className="cursor-pointer hover:bg-amber-400 transition duration-200 p-2 rounded"
-                  key={code}
-                  onClick={() => handleLanguageSelect(code)}
+            <div className="alphabet-list flex gap-2 mb-2">
+              {"ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map((letter) => (
+                <button
+                  key={letter}
+                  onClick={() => handleLetterClick(letter)}
+                  className="text-gray-900 hover:text-amber-400"
                 >
-                  {name}
-                </li>
+                  {letter}
+                </button>
               ))}
+            </div>
+            <ul>
+              {(filteredLanguages || Object.entries(languages)).map(
+                ([code, name]) => (
+                  <li
+                    className="cursor-pointer hover:bg-amber-400 transition duration-200 p-2 rounded"
+                    key={code}
+                    onClick={() => handleLanguageSelect(code)}
+                  >
+                    {name}
+                  </li>
+                )
+              )}
             </ul>
+            {filteredLanguages && (
+              <button
+                onClick={handleResetFilter}
+                className="mt-2 text-amber-400 hover:text-amber-600"
+              >
+                Show All
+              </button>
+            )}
           </div>
         )}
       </div>
