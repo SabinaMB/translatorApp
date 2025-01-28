@@ -80,7 +80,7 @@ const TranslatorApp = () => {
     }
   };
   return (
-    <div className="flex flex-col gap-y-4 justify-center items-center pt-12 pb-6 relative">
+    <div className="min-w-[90%] sm:min-w-xl flex flex-col gap-y-4 justify-center items-center pt-12 pb-6 relative">
       <div className="min-h-20 w-full flex justify-center items-center px-8 bg-amber-400 text-gray-900 rounded-lg">
         <div className="language" onClick={() => handleLanguageClick("from")}>
           {languages[selectedLanguageFrom] || "English"}
