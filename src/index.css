@@ -26,7 +26,7 @@
 }
 
 .language {
-  @apply text-xl  text-right uppercase cursor-pointer font-bold;
+  @apply text-base sm:text-xl text-right uppercase cursor-pointer font-bold;
   font-family: "Playfair Display", "Montserrat", serif;
 }
 
